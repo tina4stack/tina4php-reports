@@ -22,7 +22,7 @@ class ReportEngine extends \Tina4\Data
      * @param string $debug
      * @return mixed
      */
-    function generate($reportName, $outputName, $sql, string $debug = "")
+    function generate($reportName, $outputName, string $sql, string $debug = "")
     {
         if (file_exists($reportName)) {
             $reportName = realpath($reportName);
