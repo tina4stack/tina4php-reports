@@ -24,10 +24,12 @@
         "phpunit/phpunit": "^9",
         "overtrue/phplint": "^2.0",
         "tina4stack/tina4php-debug": "^2.0",
-        "phpmetrics/phpmetrics": "^2.8"
+        "phpmetrics/phpmetrics": "^2.8",
+        "tina4stack/tina4php-database": "^2.0"
     },
     "require": {
         "mpdf/mpdf": "^8.1",
-        "tina4stack/tina4php-core": "^2.0"
+        "tina4stack/tina4php-core": "^2.0",
+        "tina4stack/tina4php-firebird": "^2.0"
     }
 }
