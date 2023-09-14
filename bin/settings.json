@@ -4,5 +4,5 @@
   "port" : 3050,
   "username": "user",
   "password": "password",
-  "driver" : "firebird-2.5"
+  "driver" : "firebird"
 }

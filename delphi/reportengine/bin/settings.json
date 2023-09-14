@@ -1,0 +1,8 @@
+{
+  "hostName": "",
+  "database": "",
+  "port" : "",
+  "username": "",
+  "password": "",
+  "driver" : "sqlite"
+}

@@ -70,7 +70,7 @@ class ReportEngine extends \Tina4\Data
 
         $sql = str_replace("\"", "\\\"", $sql);
 
-        $result = `{$reportEngine} "{$reportName}" "{$outputName}" "{$sql}" {$debug}`;
+        $result = `{$reportEngine} "{$reportName}" "{$outputName}" "{$sql}" "{$settingsFile}" {$debug}`;
 
         return json_decode($result);
     }

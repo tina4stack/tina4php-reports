@@ -1,3 +1,6 @@
 /.idea/
 /phpmetrics/
 /vendor/
+/delphi/reportengine/dcu/
+*.dcu
+
