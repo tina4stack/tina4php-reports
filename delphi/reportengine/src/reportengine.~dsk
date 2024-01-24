@@ -1,38 +1,63 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'C:\lib\zeosdbo\src\component\ZAbstractConnection.pas',0,1,418,38,431,0,0,,
-File_1=TSourceModule,'C:\lib\zeosdbo\src\component\ZConnection.pas',0,1,62,38,78,0,0,,
-File_2=TSourceModule,'C:\lib\reportmanagerXE\rpgdidriver.pas',0,1,1,76,30,0,0,,
-File_3=TSourceModule,'C:\lib\reportmanagerXE\rpvclreport.pas',0,1,1,27,27,0,0,,
-File_4=TSourceModule,'C:\lib\reportmanagerXE\rprfvparams.pas',0,1,1,63,29,0,0,,
-File_5=TSourceModule,'C:\lib\reportmanagerXE\rpmdfsearchvcl.pas',0,1,1,46,26,0,0,,
-File_6=TSourceModule,'C:\lib\reportmanagerXE\rpvpreview.pas',0,1,17,44,24,0,0,,
-File_7=TSourceModule,'C:\lib\reportmanagerXE\rpfmainmetaviewvcl.pas',0,1,12,7,37,0,0,,
-File_8=TSourceModule,'C:\lib\reportmanagerXE\rpmdfaboutvcl.pas',0,1,1,61,26,0,0,,
-File_9=TSourceModule,'C:\lib\reportmanagerXE\rppagesetupvcl.pas',0,1,27,63,35,0,0,,
+File_0=TSourceModule,'D:\projects\delphi\reportengine\lib\reportman-delphi\rpreport.pas',0,1,345,1,372,0,0,,
+File_1=TSourceModule,'C:\lib\zeosdbo\src\component\ZAbstractConnection.pas',0,1,418,38,431,0,0,,
+File_2=TSourceModule,'C:\lib\zeosdbo\src\component\ZConnection.pas',0,1,62,38,78,0,0,,
+File_3=TSourceModule,'C:\lib\reportmanagerXE\rpgdidriver.pas',0,1,1,76,30,0,0,,
+File_4=TSourceModule,'C:\lib\reportmanagerXE\rpvclreport.pas',0,1,1,27,27,0,0,,
+File_5=TSourceModule,'C:\lib\reportmanagerXE\rprfvparams.pas',0,1,1,63,29,0,0,,
+File_6=TSourceModule,'C:\lib\reportmanagerXE\rpmdfsearchvcl.pas',0,1,1,46,26,0,0,,
+File_7=TSourceModule,'C:\lib\reportmanagerXE\rpvpreview.pas',0,1,17,44,24,0,0,,
+File_8=TSourceModule,'C:\lib\reportmanagerXE\rpfmainmetaviewvcl.pas',0,1,12,7,37,0,0,,
+File_9=TSourceModule,'C:\lib\reportmanagerXE\rpmdfaboutvcl.pas',0,1,1,61,26,0,0,,
+File_10=TSourceModule,'C:\lib\reportmanagerXE\rppagesetupvcl.pas',0,1,27,63,35,0,0,,
 
 [Modules]
-Module0=D:\projects\delphi\reportengine\src\uDatamodule.pas
-Module1=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdclitreevcl.pas
-Module2=D:\projects\delphi\reportengine\lib\reportman-delphi\rpfmetaviewvcl.pas
-Module3=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdfaboutvcl.pas
-Module4=D:\projects\delphi\reportengine\lib\reportman-delphi\rpfmainmetaviewvcl.pas
-Module5=D:\projects\delphi\reportengine\lib\reportman-delphi\rpvpreview.pas
-Module6=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdprintconfigvcl.pas
-Module7=D:\projects\delphi\reportengine\lib\reportman-delphi\rppagesetupvcl.pas
-Module8=D:\projects\delphi\reportengine\lib\reportman-delphi\rpexceldriver.pas
-Module9=D:\projects\delphi\reportengine\lib\reportman-delphi\rppreviewmeta.pas
-Module10=D:\projects\delphi\reportengine\lib\reportman-delphi\rppreviewcontrol.pas
-Module11=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdfsearchvcl.pas
-Module12=D:\projects\delphi\reportengine\lib\reportman-delphi\rprfvparams.pas
-Module13=D:\projects\delphi\reportengine\lib\reportman-delphi\rpvclreport.pas
-Module14=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmaskedit.pas
-Module15=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdidriver.pas
-Module16=D:\projects\delphi\reportengine\lib\reportman-delphi\rpvgraphutils.pas
-Module17=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgraphutilsvcl.pas
-Module18=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdifonts.pas
-Module19=D:\projects\delphi\reportengine\src\reportengine.dproj
-Count=20
+Module0=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdidriver.pas
+Module1=D:\projects\delphi\reportengine\src\reportengine.dproj
+Module2=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.pngimage.pas
+Module3=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Graphics.pas
+Module4=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.jpeg.pas
+Module5=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmaskedit.pas
+Module6=D:\projects\delphi\reportengine\lib\reportman-delphi\rpvclreport.pas
+Module7=D:\projects\delphi\reportengine\src\uDatamodule.pas
+Module8=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdclitreevcl.pas
+Module9=D:\projects\delphi\reportengine\lib\reportman-delphi\rpfmetaviewvcl.pas
+Module10=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdfaboutvcl.pas
+Module11=D:\projects\delphi\reportengine\lib\reportman-delphi\rpfmainmetaviewvcl.pas
+Module12=D:\projects\delphi\reportengine\lib\reportman-delphi\rpvpreview.pas
+Module13=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdprintconfigvcl.pas
+Module14=D:\projects\delphi\reportengine\lib\reportman-delphi\rppagesetupvcl.pas
+Module15=D:\projects\delphi\reportengine\lib\reportman-delphi\rpexceldriver.pas
+Module16=D:\projects\delphi\reportengine\lib\reportman-delphi\rppreviewmeta.pas
+Module17=D:\projects\delphi\reportengine\lib\reportman-delphi\rppreviewcontrol.pas
+Module18=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdfsearchvcl.pas
+Module19=D:\projects\delphi\reportengine\lib\reportman-delphi\rprfvparams.pas
+Module20=D:\projects\delphi\reportengine\lib\reportman-delphi\rpvgraphutils.pas
+Module21=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgraphutilsvcl.pas
+Module22=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdifonts.pas
+Count=23
 EditWindowCount=1
+
+[D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdidriver.pas]
+ModuleType=TSourceModule
+
+[D:\projects\delphi\reportengine\src\reportengine.dproj]
+ModuleType=TBaseProject
+
+[c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.pngimage.pas]
+ModuleType=TSourceModule
+
+[c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Graphics.pas]
+ModuleType=TSourceModule
+
+[c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.jpeg.pas]
+ModuleType=TSourceModule
+
+[D:\projects\delphi\reportengine\lib\reportman-delphi\rpmaskedit.pas]
+ModuleType=TSourceModule
+
+[D:\projects\delphi\reportengine\lib\reportman-delphi\rpvclreport.pas]
+ModuleType=TSourceModule
 
 [D:\projects\delphi\reportengine\src\uDatamodule.pas]
 ModuleType=TSourceModule
@@ -73,15 +98,6 @@ ModuleType=TSourceModule
 [D:\projects\delphi\reportengine\lib\reportman-delphi\rprfvparams.pas]
 ModuleType=TSourceModule
 
-[D:\projects\delphi\reportengine\lib\reportman-delphi\rpvclreport.pas]
-ModuleType=TSourceModule
-
-[D:\projects\delphi\reportengine\lib\reportman-delphi\rpmaskedit.pas]
-ModuleType=TSourceModule
-
-[D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdidriver.pas]
-ModuleType=TSourceModule
-
 [D:\projects\delphi\reportengine\lib\reportman-delphi\rpvgraphutils.pas]
 ModuleType=TSourceModule
 
@@ -91,12 +107,9 @@ ModuleType=TSourceModule
 [D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdifonts.pas]
 ModuleType=TSourceModule
 
-[D:\projects\delphi\reportengine\src\reportengine.dproj]
-ModuleType=TBaseProject
-
 [EditWindow0]
-ViewCount=21
-CurrentEditView=D:\projects\delphi\reportengine\src\uDatamodule.pas
+ViewCount=24
+CurrentEditView=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdidriver.pas
 View0=0
 View1=1
 View2=2
@@ -118,6 +131,9 @@ View17=17
 View18=18
 View19=19
 View20=20
+View21=21
+View22=22
+View23=23
 PercentageSizes=1
 Create=1
 Visible=1
@@ -154,9 +170,9 @@ OTAEditViewType=WelcomePage.MainPage
 [View1]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\src\reportengine.dpr
-CursorX=36
-CursorY=8
-TopLine=1
+CursorX=20
+CursorY=33
+TopLine=22
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -165,26 +181,59 @@ EditViewName=D:\projects\delphi\reportengine\src\reportengine.dpr
 [View2]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\src\uDatamodule.pas
-CursorX=1
-CursorY=81
-TopLine=81
+CursorX=26
+CursorY=57
+TopLine=28
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=Borland.FormDesignerView
+EditViewName=D:\projects\delphi\reportengine\src\uDatamodule.pas
 
 [View3]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdidriver.pas
-CursorX=34
-CursorY=58
-TopLine=50
+CursorX=20
+CursorY=3513
+TopLine=3463
 LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdidriver.pas
 
 [View4]
+CustomEditViewType=TEditView
+Module=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.pngimage.pas
+CursorX=47
+CursorY=283
+TopLine=270
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.pngimage.pas
+
+[View5]
+CustomEditViewType=TEditView
+Module=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.jpeg.pas
+CursorX=34
+CursorY=948
+TopLine=932
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.jpeg.pas
+
+[View6]
+CustomEditViewType=TEditView
+Module=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Graphics.pas
+CursorX=1
+CursorY=1108
+TopLine=1087
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Graphics.pas
+
+[View7]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmaskedit.pas
 CursorX=25
@@ -195,18 +244,18 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmaskedit.pas
 
-[View5]
+[View8]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpvclreport.pas
-CursorX=43
-CursorY=20
-TopLine=1
+CursorX=25
+CursorY=160
+TopLine=136
 LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rpvclreport.pas
 
-[View6]
+[View9]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rprfvparams.pas
 CursorX=61
@@ -217,7 +266,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rprfvparams.pas
 
-[View7]
+[View10]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdfsearchvcl.pas
 CursorX=56
@@ -228,7 +277,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdfsearchvcl.pas
 
-[View8]
+[View11]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpvpreview.pas
 CursorX=31
@@ -239,7 +288,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rpvpreview.pas
 
-[View9]
+[View12]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpfmainmetaviewvcl.pas
 CursorX=50
@@ -250,7 +299,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rpfmainmetaviewvcl.pas
 
-[View10]
+[View13]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdfaboutvcl.pas
 CursorX=61
@@ -261,7 +310,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdfaboutvcl.pas
 
-[View11]
+[View14]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpfmetaviewvcl.pas
 CursorX=45
@@ -272,7 +321,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rpfmetaviewvcl.pas
 
-[View12]
+[View15]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdclitreevcl.pas
 CursorX=59
@@ -283,7 +332,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdclitreevcl.pas
 
-[View13]
+[View16]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rppreviewcontrol.pas
 CursorX=46
@@ -294,7 +343,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rppreviewcontrol.pas
 
-[View14]
+[View17]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rppreviewmeta.pas
 CursorX=74
@@ -305,7 +354,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rppreviewmeta.pas
 
-[View15]
+[View18]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpexceldriver.pas
 CursorX=24
@@ -316,7 +365,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rpexceldriver.pas
 
-[View16]
+[View19]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rppagesetupvcl.pas
 CursorX=28
@@ -327,7 +376,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rppagesetupvcl.pas
 
-[View17]
+[View20]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdprintconfigvcl.pas
 CursorX=13
@@ -338,7 +387,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdprintconfigvcl.pas
 
-[View18]
+[View21]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdifonts.pas
 CursorX=28
@@ -349,7 +398,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdifonts.pas
 
-[View19]
+[View22]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgraphutilsvcl.pas
 CursorX=38
@@ -360,7 +409,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgraphutilsvcl.pas
 
-[View20]
+[View23]
 CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\lib\reportman-delphi\rpvgraphutils.pas
 CursorX=27
@@ -396,7 +445,8 @@ Dockable=1
 StayOnTop=0
 
 [Breakpoints]
-Count=0
+Count=1
+Breakpoint0='c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.jpeg.pas',952,'',0,1,'',1,0,0,'',1,'','','',0,''
 
 [EmbarcaderoWin32Debugger_AddressBreakpoints]
 Count=0
@@ -518,11 +568,6 @@ LRDockWidth=1896
 Dockable=1
 StayOnTop=0
 SplitPos=111
-
-[PropInspDesignerSelection]
-ArrangeBy=Name
-SelectedItem=Name,
-ExpandedItems=LiveBindings=0,"LiveBindings Designer=0",Margins=0,ConnectedStoredUsage=0,FetchOptions=0,FormatOptions=0,FormatSettings=0,RawCharacterTransliterateOptions=0
 
 [frmDesignPreview]
 PercentageSizes=1

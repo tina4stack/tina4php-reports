@@ -12,14 +12,14 @@ File_9=TSourceModule,'C:\lib\reportmanagerXE\rpmdfaboutvcl.pas',0,1,1,61,26,0,0,
 File_10=TSourceModule,'C:\lib\reportmanagerXE\rppagesetupvcl.pas',0,1,27,63,35,0,0,,
 
 [Modules]
-Module0=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdidriver.pas
-Module1=D:\projects\delphi\reportengine\src\reportengine.dproj
-Module2=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.pngimage.pas
-Module3=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Graphics.pas
-Module4=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.jpeg.pas
-Module5=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmaskedit.pas
-Module6=D:\projects\delphi\reportengine\lib\reportman-delphi\rpvclreport.pas
-Module7=D:\projects\delphi\reportengine\src\uDatamodule.pas
+Module0=D:\projects\php\tina4\tina4php-reports\delphi\reportengine\src\reportengine.dproj
+Module1=D:\projects\delphi\reportengine\src\uDatamodule.pas
+Module2=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdidriver.pas
+Module3=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.pngimage.pas
+Module4=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Graphics.pas
+Module5=c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.jpeg.pas
+Module6=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmaskedit.pas
+Module7=D:\projects\delphi\reportengine\lib\reportman-delphi\rpvclreport.pas
 Module8=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdclitreevcl.pas
 Module9=D:\projects\delphi\reportengine\lib\reportman-delphi\rpfmetaviewvcl.pas
 Module10=D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdfaboutvcl.pas
@@ -38,11 +38,14 @@ Module22=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdifonts.pas
 Count=23
 EditWindowCount=1
 
-[D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdidriver.pas]
+[D:\projects\php\tina4\tina4php-reports\delphi\reportengine\src\reportengine.dproj]
+ModuleType=TBaseProject
+
+[D:\projects\delphi\reportengine\src\uDatamodule.pas]
 ModuleType=TSourceModule
 
-[D:\projects\delphi\reportengine\src\reportengine.dproj]
-ModuleType=TBaseProject
+[D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdidriver.pas]
+ModuleType=TSourceModule
 
 [c:\program files (x86)\embarcadero\studio\22.0\SOURCE\VCL\Vcl.Imaging.pngimage.pas]
 ModuleType=TSourceModule
@@ -57,9 +60,6 @@ ModuleType=TSourceModule
 ModuleType=TSourceModule
 
 [D:\projects\delphi\reportengine\lib\reportman-delphi\rpvclreport.pas]
-ModuleType=TSourceModule
-
-[D:\projects\delphi\reportengine\src\uDatamodule.pas]
 ModuleType=TSourceModule
 
 [D:\projects\delphi\reportengine\lib\reportman-delphi\rpmdclitreevcl.pas]
@@ -109,7 +109,7 @@ ModuleType=TSourceModule
 
 [EditWindow0]
 ViewCount=24
-CurrentEditView=D:\projects\delphi\reportengine\lib\reportman-delphi\rpgdidriver.pas
+CurrentEditView=D:\projects\php\tina4\tina4php-reports\delphi\reportengine\src\reportengine.dpr
 View0=0
 View1=1
 View2=2
@@ -152,13 +152,13 @@ BorlandEditorCodeExplorer=BorlandEditorCodeExplorer@EditWindow0
 TopPanelSize=0
 LeftPanelSize=1896
 LeftPanelClients=PropertyInspector,DockSite3
-LeftPanelData=00000800010100000000420F00000000000001680700000000000001000000001D09000009000000446F636B53697465330100000000201B00001100000050726F7065727479496E73706563746F72FFFFFFFF
+LeftPanelData=00000800010100000000E11200000000000001680700000000000001000000005C0E000009000000446F636B53697465330100000000912100001100000050726F7065727479496E73706563746F72FFFFFFFF
 RightPanelSize=2000
 RightPanelClients=DockSite2,DockSite4
-RightPanelData=00000800010100000000420F00000000000001D00700000000000001000000004412000009000000446F636B53697465320100000000201B000009000000446F636B5369746534FFFFFFFF
-BottomPanelSize=1574
+RightPanelData=00000800010100000000E11200000000000001D00700000000000001000000004412000009000000446F636B536974653201000000009121000009000000446F636B5369746534FFFFFFFF
+BottomPanelSize=0
 BottomPanelClients=DockSite1,MessageView
-BottomPanelData=0000080001020100000009000000446F636B5369746531DE440000000000000226060000000000000100000000DE4400000F0000004D65737361676556696577466F726DFFFFFFFF
+BottomPanelData=0000080001020200000009000000446F636B53697465310F0000004D65737361676556696577466F726D1534000000000000022606000000000000FFFFFFFF
 BottomMiddlePanelSize=0
 BottomMiddlePanelClients=DockSite0,GraphDrawingModel
 BottomMiddelPanelData=0000080001020200000009000000446F636B536974653010000000477261706844726177696E67566965779F1D00000000000002F206000000000000FFFFFFFF
@@ -169,17 +169,6 @@ OTAEditViewType=WelcomePage.MainPage
 
 [View1]
 CustomEditViewType=TEditView
-Module=D:\projects\delphi\reportengine\src\reportengine.dpr
-CursorX=20
-CursorY=33
-TopLine=22
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\projects\delphi\reportengine\src\reportengine.dpr
-
-[View2]
-CustomEditViewType=TEditView
 Module=D:\projects\delphi\reportengine\src\uDatamodule.pas
 CursorX=26
 CursorY=57
@@ -188,6 +177,17 @@ LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=D:\projects\delphi\reportengine\src\uDatamodule.pas
+
+[View2]
+CustomEditViewType=TEditView
+Module=D:\projects\php\tina4\tina4php-reports\delphi\reportengine\src\reportengine.dpr
+CursorX=51
+CursorY=27
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\projects\php\tina4\tina4php-reports\delphi\reportengine\src\reportengine.dpr
 
 [View3]
 CustomEditViewType=TEditView
@@ -514,18 +514,18 @@ StayOnTop=0
 [MessageView]
 PercentageSizes=1
 Create=1
-Visible=1
+Visible=0
 Docked=1
 State=0
 Left=0
 Top=28
-Width=9917
-Height=1376
+Width=2771
+Height=1415
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=9917
-ClientHeight=1376
-TBDockHeight=1376
+ClientWidth=2771
+ClientHeight=1415
+TBDockHeight=1415
 LRDockWidth=2771
 Dockable=1
 StayOnTop=0
@@ -539,11 +539,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=2103
+Height=3828
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=2103
+ClientHeight=3828
 TBDockHeight=7151
 LRDockWidth=2000
 Dockable=1
@@ -556,13 +556,13 @@ Visible=1
 Docked=1
 State=0
 Left=0
-Top=280
+Top=425
 Width=1896
-Height=4554
+Height=4874
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
-ClientHeight=4554
+ClientHeight=4874
 TBDockHeight=8721
 LRDockWidth=1896
 Dockable=1
@@ -885,11 +885,11 @@ State=0
 Left=0
 Top=0
 Width=1896
-Height=2093
+Height=3498
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
-ClientHeight=2093
+ClientHeight=3498
 TBDockHeight=3682
 LRDockWidth=1896
 Dockable=1
@@ -1019,11 +1019,11 @@ State=0
 Left=0
 Top=28
 Width=1896
-Height=2093
+Height=3498
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
-ClientHeight=2093
+ClientHeight=3498
 TBDockHeight=8721
 LRDockWidth=1896
 Dockable=1
@@ -1043,11 +1043,11 @@ State=0
 Left=0
 Top=533
 Width=2000
-Height=2103
+Height=3828
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=2103
+ClientHeight=3828
 TBDockHeight=8721
 LRDockWidth=2000
 Dockable=1
