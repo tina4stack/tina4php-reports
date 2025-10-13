@@ -66,12 +66,16 @@
 {.$DEFINE ZEOS_DISABLE_OLEDB}
 {.$DEFINE ZEOS_DISABLE_ODBC}
 {.$DEFINE ZEOS_DISABLE_PROXY}
-{.$DEFINE ZEOS_PROXY_USE_INTERNAL_PROXY}
+{$DEFINE ZEOS_PROXY_USE_INTERNAL_PROXY}
 
 {.$DEFINE USE_SYNCOMMONS} //enable JSON content support by using SynCommons.pas from Synopse project v1.18
 {.$DEFINE MORMOT2} //enable JSON content support by using mormot.db.core.pas from Synopse project v2+
 
 {.$DEFINE DO_NOT_DERIVE_FROM_EDATABASEERROR} //don't derive Zeos Exceptions from EDatabaseError
+
+// Enabling this directive will cause Zeos not to cache client connection libraries. This basically means
+// that all handles will be immediately released once the final connection is closed
+{.$DEFINE ZEOS_DISABLE_DRIVER_CACHE}
 
 // In Version 6.1.5 there are several bugs with the TZSQLMetadata-Component
 // For Version 6.5.0 you should uncomment the following line
@@ -385,10 +389,14 @@
                                           {$IFEND}
                                           {$UNDEF WITH_TWIDEMEMOFIELD_GETASVARIANT_varNULL_BUG} //The bug is resolved.
                                           {$UNDEF WITH_TMEMOFIELD_GETASVARIANT_varNULL_BUG} //The bug is resolved.
-										  {$DEFINE USE_SYNCOBJS_FOR_INLINING} //Add SyncObjs unit to the uses list to resolve a warning about inlining
-										  {$IF CompilerVersion >= 35} //Delphi 11 Alexandria
-										    {$DEFINE MEMORYSTREAM_REALLOC_NATIVEINT} // TMemoryStream.Realloc uses NativeInt instead of Longint
-										  {$IFEND CompilerVersion >= 35} // Delphi 11 Alexandria
+                                          {$DEFINE USE_SYNCOBJS_FOR_INLINING} //Add SyncObjs unit to the uses list to resolve a warning about inlining
+                                          {$IF CompilerVersion >= 35} //Delphi 11 Alexandria
+										    {$DEFINE TCERTIFICATE_HAS_PUBLICKEY}
+                                            {$DEFINE MEMORYSTREAM_REALLOC_NATIVEINT} // TMemoryStream.Realloc uses NativeInt instead of Longint
+                                            {$IF CompilerVersion >= 36} //Delphi 12 Athens
+                                              {$DEFINE NATIVEINT_WEAK_REFERENCE} // TMemoryStream.Realloc uses NativeInt instead of Longint
+                                            {$IFEND CompilerVersion >= 36} // Delphi 12 Athens
+                                          {$IFEND CompilerVersion >= 35} // Delphi 11 Alexandria
                                         {$IFEND CompilerVersion >= 34}
                                       {$IFEND CompilerVersion >= 33}
                                     {$ELSE !CompilerVersion >= 32} //Delphi Berlin+
@@ -429,6 +437,9 @@
       {$DEFINE FAST_MOVE}
     {$IFEND}
   {$IFEND CompilerVersion < 15}
+  {$IFDEF VER360}
+    {$DEFINE ILINK_HAS_TBCD_IN_UNIONS_BUG}
+  {$ENDIF VER360}
 {$ENDIF}
 
 {$IFDEF LINUX}

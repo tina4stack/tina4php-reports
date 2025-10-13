@@ -1,0 +1,132 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8D74AA27-5D0E-43EA-B630-8585AEBA5EBE}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="reportengine\src\reportengine.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="reportengine\lib\reportman-delphi\rppack_delxe3.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="reportengine\lib\reportman-delphi\rppack_delxe3_designtime.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="reportengine\lib\zeoslib-master\packages\Delphi12\ZComponent.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="reportengine\lib\zeoslib-master\packages\Delphi12\ZComponentDesign.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="reportengine\lib\zeoslib-master\packages\Delphi12\ZCore.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="reportengine\lib\zeoslib-master\packages\Delphi12\ZDbc.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="reportengine\lib\zeoslib-master\packages\Delphi12\ZParseSql.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="reportengine\lib\zeoslib-master\packages\Delphi12\ZPlain.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="reportengine">
+        <MSBuild Projects="reportengine\src\reportengine.dproj"/>
+    </Target>
+    <Target Name="reportengine:Clean">
+        <MSBuild Projects="reportengine\src\reportengine.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="reportengine:Make">
+        <MSBuild Projects="reportengine\src\reportengine.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="rppack_delxe3">
+        <MSBuild Projects="reportengine\lib\reportman-delphi\rppack_delxe3.dproj"/>
+    </Target>
+    <Target Name="rppack_delxe3:Clean">
+        <MSBuild Projects="reportengine\lib\reportman-delphi\rppack_delxe3.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="rppack_delxe3:Make">
+        <MSBuild Projects="reportengine\lib\reportman-delphi\rppack_delxe3.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="rppack_delxe3_designtime">
+        <MSBuild Projects="reportengine\lib\reportman-delphi\rppack_delxe3_designtime.dproj"/>
+    </Target>
+    <Target Name="rppack_delxe3_designtime:Clean">
+        <MSBuild Projects="reportengine\lib\reportman-delphi\rppack_delxe3_designtime.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="rppack_delxe3_designtime:Make">
+        <MSBuild Projects="reportengine\lib\reportman-delphi\rppack_delxe3_designtime.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ZComponent">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZComponent.dproj"/>
+    </Target>
+    <Target Name="ZComponent:Clean">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZComponent.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ZComponent:Make">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZComponent.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ZComponentDesign">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZComponentDesign.dproj"/>
+    </Target>
+    <Target Name="ZComponentDesign:Clean">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZComponentDesign.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ZComponentDesign:Make">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZComponentDesign.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ZCore">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZCore.dproj"/>
+    </Target>
+    <Target Name="ZCore:Clean">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZCore.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ZCore:Make">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZCore.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ZDbc">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZDbc.dproj"/>
+    </Target>
+    <Target Name="ZDbc:Clean">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZDbc.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ZDbc:Make">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZDbc.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ZParseSql">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZParseSql.dproj"/>
+    </Target>
+    <Target Name="ZParseSql:Clean">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZParseSql.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ZParseSql:Make">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZParseSql.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ZPlain">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZPlain.dproj"/>
+    </Target>
+    <Target Name="ZPlain:Clean">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZPlain.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ZPlain:Make">
+        <MSBuild Projects="reportengine\lib\zeoslib-master\packages\Delphi12\ZPlain.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="reportengine;rppack_delxe3;rppack_delxe3_designtime;ZComponent;ZComponentDesign;ZCore;ZDbc;ZParseSql;ZPlain"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="reportengine:Clean;rppack_delxe3:Clean;rppack_delxe3_designtime:Clean;ZComponent:Clean;ZComponentDesign:Clean;ZCore:Clean;ZDbc:Clean;ZParseSql:Clean;ZPlain:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="reportengine:Make;rppack_delxe3:Make;rppack_delxe3_designtime:Make;ZComponent:Make;ZComponentDesign:Make;ZCore:Make;ZDbc:Make;ZParseSql:Make;ZPlain:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

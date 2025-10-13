@@ -4551,12 +4551,6 @@ begin
   LastUpdateCount := BatchDMLArrayCount;
 end;
 
-{$IF not declared(PRawByteString)}
-type
-  PRawByteString = ^RawByteString;
-{$IFEND}
-
-
 const
   sRETURNING = 'RETURNING';
   EBStart = {$IFNDEF NO_ANSISTRING}AnsiString{$ELSE}RawByteString{$ENDIF}('EXECUTE BLOCK(');
@@ -4585,7 +4579,7 @@ var
   PStmts, PResult, P: PAnsiChar;
   TypeToken: PRawByteString;
   procedure ComposeTypeTokens;
-  var TypeToken: PRawByteString;
+  var TypeToken: {$IFNDEF WITH_RAWBYTESTRING}ZCompatibility.{$ENDIF} PRawByteString;
     ParamIndex, j: Cardinal;
     SQLWriter: TZRawSQLStringWriter;
     CodePageInfo: PZCodePage;

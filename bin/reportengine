@@ -2,6 +2,4 @@
 export DISPLAY=:1
 export WINEDEBUG=-all 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-
-wine "${SCRIPTPATH}/reportengine.exe" "$@" 
-
+wine "${SCRIPTPATH}/reportengine.exe" "$@"

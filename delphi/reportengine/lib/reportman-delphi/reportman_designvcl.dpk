@@ -54,7 +54,6 @@ requires
   FireDACMySQLDriver,
   FireDACADSDriver,
   adortl,
-  ibxpress,
   Tee,
   reportman_rtl,
   reportman_vcl;

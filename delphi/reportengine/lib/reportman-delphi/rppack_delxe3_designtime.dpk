@@ -1,11 +1,10 @@
 package rppack_delxe3_designtime;
-
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
-{$DEBUGINFO ON}
+{$DEBUGINFO OFF}
 {$EXTENDEDSYNTAX ON}
 {$IMPORTEDDATA ON}
 {$IOCHECKS ON}
@@ -31,11 +30,12 @@ package rppack_delxe3_designtime;
 {$IMPLICITBUILD ON}
 
 requires
+  rtl,
   vcl,
-  dbrtl,
   adortl,
+  dbexpress,
+  dbrtl,
   dsnap,
-  ibxpress,
   IndyCore,
   IndyProtocols,
   IndySystem,
@@ -49,13 +49,37 @@ requires
   xmlrtl,
   DbxClientDriver,
   CustomIPTransport,
-  dbexpress,
-  bdertl,
   ZComponent,
   ZParseSql,
   ZCore,
   ZDbc,
-  ZPlain;
+  ZPlain,
+  DataSnapClient,
+  FireDACODBCDriver,
+  FireDACOracleDriver,
+  FireDACMSSQLDriver,
+  FireDACDb2Driver,
+  FireDACInfxDriver,
+  FireDACASADriver,
+  FireDACTDataDriver,
+  FireDACDSDriver,
+  FireDACDBXDriver,
+  FireDACADSDriver,
+  FireDACSqliteDriver,
+  FireDACMySQLDriver,
+  FireDACIBDriver,
+  FireDACCommonODBC,
+  vclFireDAC,
+  FireDACMSAccDriver,
+  FireDACPgDriver,
+  DBXDb2Driver,
+  DBXInformixDriver,
+  DBXMSSQLDriver,
+  DBXOracleDriver,
+  DBXSybaseASADriver,
+  DBXSybaseASEDriver,
+  DBXFirebirdDriver,
+  DBXOdbcDriver;
 
 contains
   rpregvcl in 'rpregvcl.pas',

@@ -354,6 +354,10 @@ type
     RawByteString = AnsiString;
     {$ENDIF}
   {$ENDIF}
+  {$IF not declared(PRawByteString)}
+    PRawByteString = ^RawByteString;
+  {$IFEND}
+
 
   {$If not declared(UnicodeString)}
   UnicodeString = WideString;

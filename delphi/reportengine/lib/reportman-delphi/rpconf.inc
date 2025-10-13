@@ -263,7 +263,7 @@
 {$ENDIF}
 
 // Delphi XE11.0 (2021)
-{$IFDEF VER350}
+{$IFDEF VER370}
  {$DEFINE XE3UP}
  {$DEFINE DELPHIXE3UP}
  {$DEFINE DELPHIXE2UP}
@@ -332,6 +332,7 @@
 //{$DEFINE USEIBO}
 
 
+
 {$IFDEF FPC}
  {$UNDEF USEZLIB}
  {$DEFINE BOOLFUNC}
@@ -372,6 +373,14 @@
  // Active this if zoombie proceses are created when executing lpr (text output)
  //{$DEFINE ALTLINUXTEXTPRINT}
 {$ENDIF}
+
+{$UNDEF USEIBX}
+{$UNDEF USEIBX}
+{$UNDEF USEADO}
+{$UNDEF USEBDE}
+{$UNDEF USEIBO}
+{$DEFINE USEZEOS}
+
 
 
 {$DEFINE USEVARIANTS}

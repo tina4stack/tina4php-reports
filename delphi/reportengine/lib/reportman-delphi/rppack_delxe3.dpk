@@ -17,7 +17,7 @@ package rppack_delxe3;
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
-{$DEBUGINFO ON}
+{$DEBUGINFO OFF}
 {$EXTENDEDSYNTAX ON}
 {$IMPORTEDDATA ON}
 {$IOCHECKS ON}
@@ -42,15 +42,15 @@ package rppack_delxe3;
 {$RUNONLY}
 {$IMPLICITBUILD ON}
 
+
+
 requires
   rtl,
   vcl,
   adortl,
-  bdertl,
   dbexpress,
   dbrtl,
   dsnap,
-  ibxpress,
   IndyCore,
   IndyProtocols,
   IndySystem,
@@ -68,7 +68,33 @@ requires
   ZParseSql,
   ZCore,
   ZDbc,
-  ZPlain;
+  ZPlain,
+  DataSnapClient,
+  FireDACODBCDriver,
+  FireDACOracleDriver,
+  FireDACMSSQLDriver,
+  FireDACDb2Driver,
+  FireDACInfxDriver,
+  FireDACASADriver,
+  FireDACTDataDriver,
+  FireDACDSDriver,
+  FireDACDBXDriver,
+  FireDACADSDriver,
+  FireDACSqliteDriver,
+  FireDACMySQLDriver,
+  FireDACIBDriver,
+  FireDACCommonODBC,
+  vclFireDAC,
+  FireDACMSAccDriver,
+  FireDACPgDriver,
+  DBXDb2Driver,
+  DBXInformixDriver,
+  DBXMSSQLDriver,
+  DBXOracleDriver,
+  DBXSybaseASADriver,
+  DBXSybaseASEDriver,
+  DBXFirebirdDriver,
+  DBXOdbcDriver;
 
 contains
   rpgdidriver in 'rpgdidriver.pas',

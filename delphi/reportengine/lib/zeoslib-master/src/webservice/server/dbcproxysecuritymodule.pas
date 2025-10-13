@@ -72,12 +72,18 @@ type
 
   TZYubiOtpSecurityModule = class(TZAbstractSecurityModule)
   protected
-    FYubikeysName: String;
+    FYubikeysFile: String;
     FAddDatabase: Boolean;
     FDatabaseSeparator: String;
     FBaseURL: String;
     FClientID: Integer;
     FSecretKey: String;
+    FYubikeySQL: String;
+    FDBUser: String;
+    FDBPassword: String;
+    FReplacementUserNameColumn: String;
+    function CheckUserYubikeyFile(const UserName, Password, ConnectionName: String): Boolean;
+    function CheckUserYubikeyDatabase(var UserName: String; const Password, ConnectionName: String): Boolean;
   public
     function CheckPassword(var UserName, Password: String; const ConnectionName: String): Boolean; override;
     procedure LoadConfig(IniFile: TIniFile; const Section: String); override;
@@ -159,32 +165,99 @@ begin
   FModuleName := Section;
 end;
 
-function TZYubiOtpSecurityModule.CheckPassword(var UserName, Password: String; const ConnectionName: String): Boolean;
+{------------------------------------------------------------------------------}
+
+function TZYubiOtpSecurityModule.CheckUserYubikeyFile(const UserName, Password, ConnectionName: String): Boolean;
 var
   Yubikeys: TStringList;
   AllowedKeys: String;
   PublicIdentity: String;
   YubikeysUser: String;
+begin
+  Yubikeys := TStringList.Create;
+  try
+    Yubikeys.NameValueSeparator:=':';
+    Yubikeys.LoadFromFile(FYubikeysFile, TEncoding.UTF8);
+    YubikeysUser := UserName;
+    if FAddDatabase then
+      YubikeysUser := YubikeysUser + FDatabaseSeparator + ConnectionName;
+    AllowedKeys := ':' + Yubikeys.Values[YubikeysUser] + ':';
+    Logger.Debug('yubiotp: User: ' + YubikeysUser + ' Allowed keys: ' + AllowedKeys);
+    if AllowedKeys = '::' then
+      raise Exception.Create('No yubikeys found for user ' + YubikeysUser);
+    PublicIdentity := GetYubikeyIdentity(Password);
+    Result := Pos(':' + PublicIdentity + ':', AllowedKeys) > 0;
+    if not Result then
+      raise Exception.Create('The yubikey ' + PublicIdentity + ' cannot be used for the user ' + YubikeysUser + '.');
+  finally
+    FreeAndNil(Yubikeys);
+  end;
+end;
+
+function TZYubiOtpSecurityModule.CheckUserYubikeyDatabase(var UserName: String; const Password, ConnectionName: String): Boolean;
+var
+  URL: String;
+  Conn: IZConnection;
+  Stmt: IZPreparedStatement;
+  RS: IZResultSet;
+  PropertiesList: TStringList;
+  PublicIdentity: String;
+  YubikeysUser: String;
+begin
+  Result := False;
+
+  if FAddDatabase then
+    YubikeysUser := YubikeysUser + FDatabaseSeparator + ConnectionName
+  else
+    YubikeysUser := UserName;
+
+  PublicIdentity := GetYubikeyIdentity(Password);
+
+  URL := ConfigManager.ConstructUrl(ConnectionName, FDBUser, FDBPassword, False);
+  PropertiesList := TStringList.Create;
+  try
+    Conn := DriverManager.GetConnectionWithParams(Url, PropertiesList);
+  finally
+    FreeAndNil(PropertiesList);
+  end;
+
+  Stmt := Conn.PrepareStatement(FYubikeySQL);
+  Stmt.SetResultSetConcurrency(rcReadOnly);
+  Stmt.SetResultSetType(rtForwardOnly);
+  Stmt.SetString(FirstDbcIndex, PublicIdentity);
+  Stmt.SetString(FirstDbcIndex + 1, YubikeysUser);
+  if Stmt.ExecutePrepared then begin
+    RS := Stmt.GetResultSet;
+    if Assigned(RS) and RS.IsBeforeFirst then begin
+      if RS.Next then begin
+        try
+          if FReplacementUserNameColumn <> '' then
+            UserName := RS.GetStringByName(FReplacementUserNameColumn);
+          Result := True;
+        finally
+          RS.Close;
+        end;
+      end else begin
+        raise Exception.Create('No record for user ' + UserName + ' and Yubikey ' + PublicIdentity + '  found.');
+      end;
+    end;
+  end;
+  RS := nil;
+  Stmt := nil;
+  Conn.Close;
+  Conn := nil;
+end;
+
+function TZYubiOtpSecurityModule.CheckPassword(var UserName, Password: String; const ConnectionName: String): Boolean;
+var
   YubiStatus: TYubiOtpStatus;
   RemainingPassword: String;
 begin
   Result := false;
-  Yubikeys := TStringList.Create;
-  try
-    Yubikeys.NameValueSeparator:=':';
-    Yubikeys.LoadFromFile(FYubikeysName, TEncoding.UTF8);
-    YubikeysUser := UserName;
-    if FAddDatabase then
-      YubikeysUser := YubikeysUser + FDatabaseSeparator + ConnectionName;
-    AllowedKeys := ':' + Yubikeys.Values[UserName] + ':';
-    Logger.Debug('yubiotp: User: ' + YubikeysUser + ' Allowed keys: ' + AllowedKeys);
-    PublicIdentity := GetYubikeyIdentity(Password);
-    Result := Pos(':' + PublicIdentity + ':', AllowedKeys) > 0;
-    if not Result then
-      raise EZSQLException.Create('This yubikey cannot be used for this user.');
-  finally
-    FreeAndNil(Yubikeys);
-  end;
+  if FYubikeysFile <> '' then
+    Result := CheckUserYubikeyFile(UserName, Password, ConnectionName);
+  if FYubikeySQL <> '' then
+    Result := CheckUserYubikeyDatabase(UserName, Password, ConnectionName);
 
   if Result then begin
     YubiStatus := VerifyYubiOtp(FBaseURL, Password, RemainingPassword, FClientID, FSecretKey);
@@ -199,12 +272,16 @@ procedure TZYubiOtpSecurityModule.LoadConfig(IniFile: TIniFile; const Section: S
 begin
   inherited;
   Logger.Debug('Initializing Security module ' + Section);
-  FYubikeysName := IniFile.ReadString(Section, 'Yubikeys File', '');
-  FAddDatabase := IniFile.ReadBool(Section, 'Add Database To Username', false);
+  FYubikeysFile := IniFile.ReadString(Section, 'Yubikeys File', '');
+  FAddDatabase := StrToBool(IniFile.ReadString(Section, 'Add Database To Username', 'false'));
   FDatabaseSeparator := IniFile.ReadString(Section, 'Database Separator', '@');
   FBaseURL := IniFile.ReadString(Section, 'Base URL', 'https://api.yubico.com/wsapi/2.0/verify');
   FClientID := IniFile.ReadInteger(Section, 'Client ID', 0);
   FSecretKey := IniFile.ReadString(Section, 'Secret Key', '');
+  FYubikeySQL := IniFile.ReadString(Section, 'Yubikey SQL', '');
+  FDBUser := IniFile.ReadString(Section, 'DB User', '');
+  FDBPassword := IniFile.ReadString(Section, 'DB Password', '');
+  FReplacementUserNameColumn := IniFile.ReadString(Section, 'Replacement User Column', '');
 end;
 
 {------------------------------------------------------------------------------}
@@ -224,7 +301,7 @@ begin
     SecretsUser := UserName;
     if FAddDatabase then
       SecretsUser := SecretsUser + FDatabaseSeparator + ConnectionName;
-    Secret := Secrets.Values[UserName];
+    Secret := UpperCase(Trim(Secrets.Values[SecretsUser]));
     Result := Secret <> '';
   finally
     FreeAndNil(Secrets);
@@ -232,13 +309,18 @@ begin
 
   if Result then begin
     OTP := Copy(Password, Length(Password) - 6 + 1, 6);
-    RemainingPassword := Copy(Password, 1, Length(Password) - 6);
-    Password := RemainingPassword;
     Result := GoogleOTP.ValidateTOPT(Secret, StrToIntDef(OTP, 0));
-  end;
+  end else
+    raise Exception.Create('Could not find secret for user ' + SecretsUser);
+
+  if not Result then
+    raise Exception.Create('Could not validate username / OTP: ' + SecretsUser + ' / ' + OTP);
 
   if not Result then
     raise EZSQLException.Create('Could not validate username / password.');
+
+  RemainingPassword := Copy(Password, 1, Length(Password) - 6);
+  Password := RemainingPassword;
 end;
 
 procedure TZTotpSecurityModule.LoadConfig(IniFile: TIniFile; const Section: String);
@@ -246,7 +328,7 @@ begin
   inherited;
   Logger.Debug('Initializing Security module ' + Section);
   FSecretsName := IniFile.ReadString(Section, 'Secrets File', '');
-  FAddDatabase := IniFile.ReadBool(Section, 'Add Database To Username', false);
+  FAddDatabase := StrToBool(IniFile.ReadString(Section, 'Add Database To Username', 'false'));
   FDatabaseSeparator := IniFile.ReadString(Section, 'Database Separator', '@');
 end;
 
@@ -376,26 +458,26 @@ end;
 procedure TZChainedSecurityModule.LoadConfig(IniFile: TIniFile; const Section: String);
 var
   Modules: String;
-  TypeList: TStringDynArray;
+  ModuleList: TStringDynArray;
   x: Integer;
   SectionName: String;
 begin
   inherited;
   Logger.Debug('Initializing Security module ' + Section);
   Modules := IniFile.ReadString(Section, 'Module List', '');
-  TypeList := SplitString(Modules, ',');
-  for x := Length(TypeList) - 1 downto 0 do
-    TypeList[x] := Trim(TypeList[x]);
-  for x := Length(TypeList) - 1 downto 0 do
-    if TypeList[x] = '' then
-      Delete(TypeList, x, 1);
-  if Length(TypeList) = 0 then
+  ModuleList := SplitString(Modules, ',');
+  for x := Length(ModuleList) - 1 downto 0 do
+    ModuleList[x] := Trim(ModuleList[x]);
+  for x := Length(ModuleList) - 1 downto 0 do
+    if ModuleList[x] = '' then
+      Delete(ModuleList, x, 1);
+  if Length(ModuleList) = 0 then
     raise EZSQLException.Create('A chained security module may not have an empty Module List');
 
-  SetLength(FModuleChain, Length(TypeList));
-  for x := 0 to Length(TypeList) - 1 do begin
-    SectionName := ConfigManager.SecurityPrefix + TypeList[x];
-    FModuleChain[x] := GetSecurityModule(TypeList[x]);
+  SetLength(FModuleChain, Length(ModuleList));
+  for x := 0 to Length(ModuleList) - 1 do begin
+    SectionName := ConfigManager.SecurityPrefix + ModuleList[x];
+    FModuleChain[x] := GetSecurityModule(IniFile.ReadString(SectionName, 'type', ''));
     FModuleChain[x].LoadConfig(IniFile, SectionName);
   end;
 end;

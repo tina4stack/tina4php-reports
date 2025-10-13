@@ -55,14 +55,14 @@ unit zeosproxyunit;
 interface
 
 uses
-  Classes, SysUtils, DaemonApp, server_listener,
+  Classes, SysUtils, DaemonApp, server_listener, {$IFDEF WITH_DNSSD}mdnsService, {$ENDIF}
   // for including the Zeos drivers:
   ZDbcAdo, ZDbcASA, ZDbcDbLib, ZDbcFirebird, ZDbcInterbase6, ZDbcMySql, ZDbcODBCCon,
   ZDbcOleDB, ZDbcOracle, ZDbcPostgreSql, ZDbcSQLAnywhere, ZDbcSqLite, ZDbcProxyMgmtDriver,
   // wst
   fpc_https_server,
   //
-  dbcproxycleanupthread, dbcproxyconfigutils
+  dbcproxycleanupthread, dbcproxyconfigutils, dbcproxycertstore
   ;
 
 type
@@ -74,7 +74,6 @@ type
     procedure DataModuleStop(Sender: TCustomDaemon; var OK: Boolean);
   private
     AppObject: TwstFPHttpsListener;
-    CleanupThread: TDbcProxyCleanupThread;
     procedure OnMessage(Sender : TObject; const AMsg : string);
   public
 
@@ -90,11 +89,11 @@ uses
   {synapse}
   {local}zeosproxy, zeosproxy_binder, zeosproxy_imp, DbcProxyUtils,
   DbcProxyConnectionManager, DbcProxyConfigManager, ZDbcProxyManagement,
-  DbcProxyFileLogger;
+  DbcProxyFileLogger, DbcProxyStartupProcedures;
 
 procedure RegisterDaemon;
 begin
-  RegisterDaemonClass(TZeosProxyDaemon)
+  RegisterDaemonClass(TZeosProxyDaemon);
 end;
 
 {$R *.lfm}
@@ -113,10 +112,24 @@ var
 begin
   {$IFDEF LINUX}
   configFile := '/etc/zeosproxy.ini';
+  zeosproxy_imp.Logger := TDbcProxyConsoleLogger.Create;
   {$ELSE}
   configFile := ExtractFilePath(ParamStr(0)) + 'zeosproxy.ini';
+  zeosproxy_imp.Logger := TDbcProxyFileLogger.Create(ExtractFilePath(ParamStr(0)) + 'zeosproxy.log');
   {$ENDIF}
-  zeosproxy_imp.Logger := TDbcProxyConsoleLogger.Create;
+
+  // register available formats
+  //Server_service_RegisterBinaryFormat();
+  zeosproxy_imp.Logger.Debug('Registering SOAP');
+  Server_service_RegisterSoapFormat();
+  //Server_service_RegisterXmlRpcFormat();
+
+  RegisterZeosProxyImplementationFactory();
+  Server_service_RegisterZeosProxyService();
+
+  InitializeSSLLibs;
+
+
   ConfigManager := TDbcProxyConfigManager.Create;
   ConfigManager.LoadBaseConfig(configFile);
   if ConfigManager.LogFile <> '' then begin
@@ -124,31 +137,20 @@ begin
     zeosproxy_imp.Logger := TDbcProxyFileLogger.Create(ConfigManager.LogFile);
   end;
   ConfigManager.LoadConnectionConfig(configFile);
+
   try
+    InitTofuCerts;
     zeosproxy_imp.Logger.Debug('Creating Connection Manager...');
-    ConnectionManager := TDbcProxyConnectionManager.Create;
+    CreateConnectionManager;
+    InitCleanupThread;
+    RegisterMdns('_zeosdbo._tcp.local');
 
-    //Server_service_RegisterBinaryFormat();
-    zeosproxy_imp.Logger.Debug('Registering SOAP');
-    Server_service_RegisterSoapFormat();
-    //Server_service_RegisterXmlRpcFormat();
-
-    RegisterZeosProxyImplementationFactory();
-    Server_service_RegisterZeosProxyService();
     zeosproxy_imp.Logger.Debug('Creating Listener...');
-    AppObject := TwstFPHttpsListener.Create(ConfigManager.IPAddress, ConfigManager.ListeningPort);
-    InitializeSSLLibs;
-    ConfigureSSL(AppObject);
+    AppObject := CreateAppObject;
     AppObject.OnNotifyMessage := OnMessage;
-    AppObject.Options := [loExecuteInThread];
-    if ConfigManager.EnableThreading then begin
-      AppObject.Options := AppObject.Options + [loHandleRequestInThread];
-      zeosproxy_imp.Logger.Info('Handling requests in threads.');
-    end;
     zeosproxy_imp.Logger.Debug('Starting the Proxy...');
     AppObject.Start();
-    CleanupThread := TDbcProxyCleanupThread.Create(ConnectionManager, ConfigManager);
-    CleanupThread.Start;
+
     zeosproxy_imp.Logger.Info('Zeos Proxy started.');
     OK := True;
   except
@@ -162,13 +164,8 @@ end;
 procedure TZeosProxyDaemon.DataModuleStop(Sender: TCustomDaemon; var OK: Boolean
   );
 begin
-  CleanupThread.Terminate;
-  CleanupThread.WaitFor;
-  AppObject.Stop();
-  FreeAndNil(AppObject);
-  FreeAndNil(ConnectionManager);
-  FreeAndNil(ConfigManager);
-  zeosproxy_imp.Logger.Info('Zeos Proxy started.');
+  StopServer;
+  zeosproxy_imp.Logger.Info('Zeos Proxy stopped.');
   OK := True;
 end;
 

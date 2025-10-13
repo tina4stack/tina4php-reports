@@ -5926,7 +5926,7 @@ const
 {$IFEND CompilerVersion >= 20}
 {$IFEND CompilerVersion >= 18}
 {$ENDIF FPC}
-  );
+ , ftUnknown );
   CheckTypeSizes = [ftBytes, ftVarBytes, ftBCD, ftReference, ftFmtBCD];
 begin
   (* EH: uncomment this (just prepared) if ftAutoInc should be supported
@@ -9414,7 +9414,7 @@ var P: PAnsiChar;
   end;
   procedure DoValidate;
   begin
-    SetLength(FValidateBuffer, Max(L, FBufferSize){$IFDEF WITH_TVALUEBUFFER}+1{$ENDIF});
+    SetLength(FValidateBuffer, {$IFDEF NATIVEINT_WEAK_REFERENCE}ZCompatibility.{$ENDIF}Max(L, FBufferSize){$IFDEF WITH_TVALUEBUFFER}+1{$ENDIF});
     if L > 0 then
       Move(P^, Pointer(FValidateBuffer)^, L);
     P := Pointer(FValidateBuffer);

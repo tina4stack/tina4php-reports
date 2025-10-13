@@ -68,10 +68,11 @@ uses
   {local}zeosproxy, zeosproxy_binder, zeosproxy_imp, DbcProxyUtils,
   DbcProxyConnectionManager, DbcProxyConfigManager, ZDbcProxyManagement,
   dbcproxycleanupthread, dbcproxysecuritymodule, DbcProxyFileLogger,
-  dbcproxyconfigutils,
+  dbcproxyconfigutils, dbcproxycertstore,
   //Zeos drivers:
-  ZDbcAdo, ZDbcASA, ZDbcDbLib, ZDbcFirebird, ZDbcInterbase6, ZDbcMySql, ZDbcODBCCon,
-  ZDbcOleDB, ZDbcOracle, ZDbcPostgreSql, ZDbcSQLAnywhere, ZDbcSqLite, ZDbcProxyMgmtDriver;
+  ZDbcAdo, ZDbcASA, ZDbcDbLib, ZDbcFirebird, ZDbcInterbase6, ZDbcMySql,
+  ZDbcODBCCon, ZDbcOleDB, ZDbcOracle, ZDbcPostgreSql, ZDbcSQLAnywhere,
+  ZDbcSqLite, ZDbcProxyMgmtDriver, DbcProxyStartupProcedures;
 
 type
 
@@ -106,10 +107,13 @@ var
   //AppObject : TwstListener;
   AppObject : TwstFPHttpsListener;
   configFile: String;
-  CleanupThread: TDbcProxyCleanupThread;
 begin
   {$IFDEF LINUX}
-  configFile := '/etc/zeosproxy.ini';
+    {$IFDEF ENABLE_DEBUG_SETTINGS}
+    configFile := ExtractFilePath(ParamStr(0)) + 'zeosproxy.ini';
+    {$ELSE}
+    configFile := '/etc/zeosproxy.ini';
+    {$IFEND}
   {$ELSE}
   configFile := ExtractFilePath(ParamStr(0)) + 'zeosproxy.ini';
   {$ENDIF}
@@ -131,54 +135,50 @@ begin
 
   { add your program here }
 
-  ConfigManager := TDbcProxyConfigManager.Create;
-  WriteLn('Loading Base Config...');
-  ConfigManager.LoadBaseConfig(configFile);
-  Logger := TDbcProxyConsoleLogger.Create;
-  WriteLn('Loading Connection Config...');
-  ConfigManager.LoadConnectionConfig(configFile);
-  ConnectionManager := TDbcProxyConnectionManager.Create;
-  CleanupThread := TDbcProxyCleanupThread.Create(ConnectionManager, ConfigManager);
-  CleanupThread.Start;
-
+  // register available formats
   //Server_service_RegisterBinaryFormat();
   Server_service_RegisterSoapFormat();
   //Server_service_RegisterXmlRpcFormat();
 
   RegisterZeosProxyImplementationFactory();
   Server_service_RegisterZeosProxyService();
-  AppObject := TwstFPHttpsListener.Create(ConfigManager.IPAddress, ConfigManager.ListeningPort);
+
+  InitializeSSLLibs;
+
+  // initialize configuration and logger -> this is server specific
+  ConfigManager := TDbcProxyConfigManager.Create;
+  WriteLn('Loading Base Config...');
+  ConfigManager.LoadBaseConfig(configFile);
+  Logger := TDbcProxyConsoleLogger.Create;
+  WriteLn('Loading Connection Config...');
+  ConfigManager.LoadConnectionConfig(configFile);
+
+  InitTofuCerts;
+  CreateConnectionManager;
+  InitCleanupThread;
+  RegisterMdns('_zeosdbo._tcp.local');
+
   try
-    InitializeSSLLibs;
-    ConfigureSSL(AppObject);
+    AppObject := CreateAppObject;
     AppObject.OnNotifyMessage := OnMessage;
     WriteLn('Zeos Proxy Server listening at:');
     WriteLn('');
     WriteLn(ConstructServerURL);
     WriteLn('');
     WriteLn('Press enter to quit.');
-    AppObject.Options := AppObject.Options + [loExecuteInThread];
-    if ConfigManager.EnableThreading then begin
-      AppObject.Options := AppObject.Options + [loHandleRequestInThread];
-      Logger.Info('Threading is enabled.');
-    end;
+
     AppObject.Start();
+
     Logger.Info('Proxy started.');
     ReadLn();
     WriteLn('Stopping the Server...');
     AppObject.Stop()
   finally
-    FreeAndNil(AppObject);
+    if Assigned(AppObject) then
+      FreeAndNil(AppObject);
   end;
 
-  if Assigned(CleanupThread) then begin
-    CleanupThread.Terminate;
-    CleanupThread.WaitFor;
-  end;
-  if Assigned(ConfigManager) then
-    FreeAndNil(ConfigManager);
-  if Assigned(ConnectionManager) then
-    FreeAndNil(ConnectionManager);
+  StopServer;
 
   // stop program loop
   Terminate;
