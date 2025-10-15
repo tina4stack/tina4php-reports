@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2019/08/19 15:53:39.000.dproj,C:\projects\reportengine\src\reportengine.dproj=\\Mac\Home\Documents\RAD Studio\Projects\Project2.dproj</Transaction>
-    <Transaction>2019/08/19 15:58:51.000.dfm,C:\projects\reportengine\src\uDatamodule.dfm=C:\projects\reportengine\src\Unit1.dfm</Transaction>
-    <Transaction>2019/08/19 15:58:51.000.pas,C:\projects\reportengine\src\uDatamodule.pas=C:\projects\reportengine\src\Unit1.pas</Transaction>
+    <Transaction>2019/08/19 15:53:39.000.dproj,\\Mac\Home\Documents\RAD Studio\Projects\Project2.dproj=C:\projects\reportengine\src\reportengine.dproj</Transaction>
+    <Transaction>2019/08/19 15:58:51.000.dfm,C:\projects\reportengine\src\Unit1.dfm=C:\projects\reportengine\src\uDatamodule.dfm</Transaction>
+    <Transaction>2019/08/19 15:58:51.000.pas,C:\projects\reportengine\src\Unit1.pas=C:\projects\reportengine\src\uDatamodule.pas</Transaction>
   </Transactions>
 </BorlandProject>

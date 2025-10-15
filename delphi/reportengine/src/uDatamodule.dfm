@@ -1,21 +1,25 @@
 object frmDatamodule: TfrmDatamodule
-  Height = 369
-  Width = 477
+  Height = 554
+  Width = 716
+  PixelsPerInch = 144
   object ZConnection: TZConnection
     ControlsCodePage = cCP_UTF16
     Catalog = ''
     Properties.Strings = (
-      'AutoEncodeStrings=ON')
+      'AutoEncodeStrings=ON'
+      'RawStringEncoding=DB_CP')
     AutoCommit = False
     ReadOnly = True
-    HostName = ''
-    Port = 0
+    DisableSavepoints = False
+    HostName = 'localhost'
+    Port = 33069
     Database = ''
     User = ''
-    Password = ''
-    Protocol = ''
-    Left = 120
-    Top = 112
+    Password = 'Pass1234!'
+    Protocol = 'mysql'
+    LibraryLocation = 'C:\Windows\libmysql.dll'
+    Left = 180
+    Top = 168
   end
   object PDFReport: TVCLReport
     AsyncExecution = False
@@ -23,7 +27,7 @@ object frmDatamodule: TfrmDatamodule
     ShowProgress = False
     Title = 'Untitled'
     ShowPrintDialog = False
-    Left = 120
-    Top = 48
+    Left = 180
+    Top = 72
   end
 end
